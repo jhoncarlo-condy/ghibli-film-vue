@@ -9,12 +9,14 @@ import {
 
 import { Card, CardContent } from '@/components/ui/card'
 import { ref, watch } from 'vue'
-import { useGetFilms } from '@/server/Film/film'
+import { useGetFilms } from '@/server/Film/Film'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'vue-router'
+import type { Film } from '@/types/Film'
 
-const films = ref([])
-const { data } = useGetFilms(4)
+const limit = ref<number>(4)
+const films = ref<Film[]>([])
+const { data } = useGetFilms(limit)
 
 watch(data, (newData) => {
   if (newData) films.value = newData

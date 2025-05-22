@@ -5,14 +5,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Star } from 'lucide-vue-next'
 import { useMutation } from '@tanstack/vue-query'
-import { useGetFilmDetail } from '@/server/Film/film'
+import type { Film } from '@/types/Film'
+import { useGetFilmDetail } from '@/server/Film/Film'
 
 const route = useRoute()
-const film = ref(null)
+const film = ref<Film | null>(null)
 
 const detailMutation = useMutation({
   mutationFn: useGetFilmDetail,
-  onSuccess: (data) => {
+  onSuccess: (data: Film) => {
     film.value = data
   },
 })

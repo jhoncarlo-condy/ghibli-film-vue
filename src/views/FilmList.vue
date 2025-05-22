@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import { useGetFilms } from '@/server/Film/film'
+import { useGetFilms } from '@/server/Film/Film'
 import {
   Card,
   CardContent,
@@ -12,11 +12,12 @@ import {
 import { Button } from '@/components/ui/button'
 import { Star } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
+import type { Film } from '@/types/Film'
 
 const router = useRouter()
 
 const limit = ref(4)
-const films = ref([])
+const films = ref<Film[]>([])
 
 const { data, refetch } = useGetFilms(limit)
 
